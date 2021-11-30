@@ -1,0 +1,21 @@
+name: Push to nuget feed on release
+
+on:
+  push
+  repository_dispatch
+  
+jobs:
+    # Regression Testing Provision.
+  regress-Testing:
+    runs-on: ubuntu-latest
+    name: "Reg"
+    strategy:
+      matrix:
+        repo: ['DontRestYourHeadPlugin','MoreSizesPlugin','GroupHideVolumesPlugin']
+    steps:
+        - name: Repository Dispatch
+          uses: peter-evans/repository-dispatch@v1
+          with:
+            token: ${{ secrets.dll_pat }}
+            repository: TaleSpire-Modding/${{ matrix.repo }}
+            event-type: regress_update
