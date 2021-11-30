@@ -1,7 +1,7 @@
 name: Push to nuget feed on release
 
 on:
-  [repository_dispatch]
+  [push,repository_dispatch]
   
 jobs:
     # Regression Testing Provision.
@@ -12,6 +12,8 @@ jobs:
       matrix:
         repo: ['AssetToolTipPlugin', 'TaleSpire.ConfigurationManager', 'RadialUIPlugin', 'TaleSpire-FileAccessPlugin']
     steps:
+        - run: |
+            echo ${{ github.event.event-type }}
         - name: Repository Dispatch
           uses: peter-evans/repository-dispatch@v1
           with:
