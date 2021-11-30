@@ -1,8 +1,7 @@
 name: Push to nuget feed on release
 
 on:
-  push
-  repository_dispatch
+  [push, repository_dispatch]
   
 jobs:
     # Regression Testing Provision.
