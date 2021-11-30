@@ -13,7 +13,7 @@ jobs:
         repo: ['AssetToolTipPlugin', 'TaleSpire.ConfigurationManager', 'RadialUIPlugin', 'TaleSpire-FileAccessPlugin']
     steps:
         - run: |
-            echo ${{ github.event.event-type }}
+            echo ${{ github.event.type }}
         - name: Repository Dispatch
           uses: peter-evans/repository-dispatch@v1
           with:
