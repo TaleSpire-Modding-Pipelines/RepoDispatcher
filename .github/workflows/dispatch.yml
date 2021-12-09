@@ -4,9 +4,26 @@ on:
   [repository_dispatch]
   
 jobs:
+    # Test dll can be patched
+  harmony-patch-Testing:
+    runs-on: ubuntu-latest
+    name: "Test Harmony Patch"
+    steps:
+      - name: Download artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{ secrets.dll_pat }}
+          workflow: build.yml
+          branch: master
+          path: .
+          repo: TaleSpire-Modding/${{ github.event.action }}
+      - name: Patch Test Dll
+        run: echo "test dll"
+        
     # Regression Testing Provision.
   regress-Testing:
     runs-on: ubuntu-latest
+    needs: harmony-patch-Testing
     name: "Reg"
     strategy:
       matrix:
