@@ -52,4 +52,4 @@ jobs:
           with:
             token: ${{ secrets.dll_pat }}
             repository: ${{ matrix.repo }}
-            event-type: ${{ github.event.action }}
+            event-type: ${{ matrix.pat }}
