@@ -1,10 +1,12 @@
 [
   {
     "organisation":" TaleSpire-Modding-Pipelines",
-    "pat": "TaleSpire-Modding-Pipelines_pat"
+    "dat": "TaleSpire-Modding-Pipelines_dat",
+    "rat": "TaleSpire-Modding-Pipelines_rat"
   },
   {
     "organisation":" TaleSpire-Modding",
-    "pat": "TaleSpire-Modding_pat"
+    "dat": "TaleSpire-Modding_dat",
+    "rat": "TaleSpire-Modding_rat"
   }
 ]
