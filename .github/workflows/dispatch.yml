@@ -50,6 +50,6 @@ jobs:
         - name: Repository Dispatch
           uses: peter-evans/repository-dispatch@v1
           with:
-            token: ${{ secrets.dll_pat }}
+            token: ${{ matrix.pat }}
             repository: ${{ matrix.repo }}
-            event-type: ${{ matrix.pat }}
+            event-type: ${{ github.event.action }}
