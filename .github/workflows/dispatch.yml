@@ -16,7 +16,7 @@ jobs:
           workflow: build.yml
           branch: master
           path: .
-          repo: TaleSpire-Modding/${{ github.event.action }}
+          repo: ${{ github.event.action }}
       - name: Patch Test Dll
         run: echo "test dll"
         
