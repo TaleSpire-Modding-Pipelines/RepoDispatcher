@@ -11,7 +11,7 @@ jobs:
       id: repo
       uses: yi-Xu-0100/repo-list-generator@v1.0.1
       with:
-        my_token: ${{ secrets.REPO_TOKEN  }}
+        my_token: ${{ secrets.TALESPIRE_MODDING_PIPELINES_RAT  }}
         user: ${{ github.repository }}
         max_page: 100
 
