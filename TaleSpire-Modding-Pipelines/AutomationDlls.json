@@ -1,1 +1,14 @@
-
+[
+  {
+    "repo":"TaleSpire-Modding/AssetToolTipPlugin"
+  },
+  {
+    "repo":"TaleSpire-Modding/TaleSpire.ConfigurationManager"
+  },
+  {
+    "repo": "TaleSpire-Modding/RadialUIPlugin"
+  },
+  {
+    "repo":"TaleSpire-Modding/TaleSpire-FileAccessPlugin"
+  }
+]
