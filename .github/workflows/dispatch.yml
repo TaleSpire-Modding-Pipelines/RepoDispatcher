@@ -5,29 +5,42 @@ on:
   
 jobs:
     # Test dll can be patched
-  harmony-patch-Testing:
+#   harmony-patch-Testing:
+#     runs-on: ubuntu-latest
+#     name: "Test Harmony Patch"
+#     steps:
+#       - name: Download artifact
+#         uses: dawidd6/action-download-artifact@v2
+#         with:
+#           github_token: ${{ secrets.dll_pat }}
+#           workflow: build.yml
+#           branch: master
+#           path: .
+#           repo: ${{ github.event.action }}
+#       - name: Patch Test Dll
+#         run: echo "test dll"
+        
+  matrix_prep:
     runs-on: ubuntu-latest
-    name: "Test Harmony Patch"
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
-      - name: Download artifact
-        uses: dawidd6/action-download-artifact@v2
-        with:
-          github_token: ${{ secrets.dll_pat }}
-          workflow: build.yml
-          branch: master
-          path: .
-          repo: ${{ github.event.action }}
-      - name: Patch Test Dll
-        run: echo "test dll"
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+    - id: set-matrix
+      run: |
+        matrix=$(jq ${{ github.event.action }}.json)                
+        echo ::set-output name=matrix::{\"include\":$(echo $matrix)}\"
         
     # Regression Testing Provision.
   regress-Testing:
     runs-on: ubuntu-latest
-    needs: harmony-patch-Testing
+    needs: matrix_prep
     name: "Reg"
     strategy:
-      matrix:
-        repo: [ 'TaleSpire-Modding/AssetToolTipPlugin','TaleSpire-Modding/TaleSpire.ConfigurationManager', 'TaleSpire-Modding/RadialUIPlugin', 'TaleSpire-Modding/TaleSpire-FileAccessPlugin']
+      matrix: ${{fromJson(needs.matrix_prep.outputs.matrix)}}
+      # matrix: 
+        # repo: [ 'TaleSpire-Modding/AssetToolTipPlugin','TaleSpire-Modding/TaleSpire.ConfigurationManager', 'TaleSpire-Modding/RadialUIPlugin', 'TaleSpire-Modding/TaleSpire-FileAccessPlugin']
     steps:
         - name: Repository Dispatch
           uses: peter-evans/repository-dispatch@v1
