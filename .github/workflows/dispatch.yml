@@ -27,11 +27,11 @@ jobs:
     name: "Reg"
     strategy:
       matrix:
-        repo: ['AssetToolTipPlugin', 'TaleSpire.ConfigurationManager', 'RadialUIPlugin', 'TaleSpire-FileAccessPlugin']
+        repo: [ 'TaleSpire-Modding/AssetToolTipPlugin','TaleSpire-Modding/TaleSpire.ConfigurationManager', 'TaleSpire-Modding/RadialUIPlugin', 'TaleSpire-Modding/TaleSpire-FileAccessPlugin']
     steps:
         - name: Repository Dispatch
           uses: peter-evans/repository-dispatch@v1
           with:
             token: ${{ secrets.dll_pat }}
-            repository: TaleSpire-Modding/${{ matrix.repo }}
+            repository: ${{ matrix.repo }}
             event-type: ${{ github.event.action }}
