@@ -3,23 +3,7 @@ name: Push to nuget feed on release
 on:
   [repository_dispatch]
   
-jobs:
-    # Test dll can be patched
-#   harmony-patch-Testing:
-#     runs-on: ubuntu-latest
-#     name: "Test Harmony Patch"
-#     steps:
-#       - name: Download artifact
-#         uses: dawidd6/action-download-artifact@v2
-#         with:
-#           github_token: ${{ secrets.dll_pat }}
-#           workflow: build.yml
-#           branch: master
-#           path: .
-#           repo: ${{ github.event.action }}
-#       - name: Patch Test Dll
-#         run: echo "test dll"
-        
+jobs:     
   matrix_prep:
     runs-on: ubuntu-latest
     outputs:
@@ -30,22 +14,17 @@ jobs:
     - id: set-matrix
       run: |
           content=`cat ${{ github.event.action }}.json`
-          # the following lines are only required for multi line json
           content="${content//'%'/'%25'}"
           content="${content//$'\n'/'%0A'}"
           content="${content//$'\r'/'%0D'}"
-          # end of optional handling for multi line json
           echo ::set-output name=matrix::{\"include\":$(echo $content)}\"
         
-    # Regression Testing Provision.
-  regress-Testing:
+  Dispatch:
     runs-on: ubuntu-latest
     needs: matrix_prep
     name: "Dispatch"
     strategy:
       matrix: ${{fromJson(needs.matrix_prep.outputs.matrix)}}
-      # matrix: 
-        # repo: [ 'TaleSpire-Modding/AssetToolTipPlugin','TaleSpire-Modding/TaleSpire.ConfigurationManager', 'TaleSpire-Modding/RadialUIPlugin', 'TaleSpire-Modding/TaleSpire-FileAccessPlugin']
     steps:
         - name: Repository Dispatch
           uses: peter-evans/repository-dispatch@v1
