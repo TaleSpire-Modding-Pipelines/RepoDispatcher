@@ -2,5 +2,9 @@
   {
     "organisation":" TaleSpire-Modding-Pipelines",
     "pat": "TaleSpire-Modding-Pipelines_pat"
+  },
+  {
+    "organisation":" TaleSpire-Modding",
+    "pat": "TaleSpire-Modding_pat"
   }
 ]
