@@ -41,7 +41,7 @@ jobs:
   regress-Testing:
     runs-on: ubuntu-latest
     needs: matrix_prep
-    name: "Reg"
+    name: "Dispatch"
     strategy:
       matrix: ${{fromJson(needs.matrix_prep.outputs.matrix)}}
       # matrix: 
