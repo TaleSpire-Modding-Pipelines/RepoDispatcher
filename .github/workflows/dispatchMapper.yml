@@ -4,15 +4,32 @@ on:
   [push]
   
 jobs:
+  matrix_prep:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+    - id: set-matrix
+      run: |
+          content=`cat organisationMapping.json`
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          echo ::set-output name=matrix::{\"include\":$(echo $content)}\"
+
   RepoMatrix:
     runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{fromJson(needs.matrix_prep.outputs.matrix)}}
     steps:
     - name: Get Repo List
       id: repo
       uses: yi-Xu-0100/repo-list-generator@v1.0.1
       with:
-        my_token: ${{ secrets.TALESPIRE_MODDING_PIPELINES_RAT  }}
-        user: ${{ github.repository }}
+        my_token: ${{ secrets[matrix.rat] }}
+        user: ${{ matrix.organisation }}
         max_page: 100
 
     - name: Echo Output
