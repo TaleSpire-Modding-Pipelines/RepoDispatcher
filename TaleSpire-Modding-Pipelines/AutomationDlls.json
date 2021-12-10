@@ -1,18 +1,18 @@
 [
   {
     "repo": "TaleSpire-Modding/AssetToolTipPlugin",
-    "pat":  "dll_pat"
+    "pat":  "TaleSpire_Modding_dat"
   },
   {
     "repo": "TaleSpire-Modding/TaleSpire.ConfigurationManager",
-    "pat":  "dll_pat"
+    "pat":  "TaleSpire_Modding_dat"
   },
   {
     "repo": "TaleSpire-Modding/RadialUIPlugin",
-    "pat":  "dll_pat"
+    "pat":  "TaleSpire_Modding_dat"
   },
   {
     "repo": "TaleSpire-Modding/TaleSpire-FileAccessPlugin",
-    "pat":  "dll_pat"
+    "pat":  "TaleSpire_Modding_dat"
   }
 ]
