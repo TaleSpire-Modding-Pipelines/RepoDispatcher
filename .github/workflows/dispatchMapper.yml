@@ -41,7 +41,7 @@ jobs:
         repocsv="$header${repos//,/$ender}$ender"
         echo $repocsv
         echo $repocsv | tee repo.csv
-        cat repo.csv | python -c 'import csv, json, sys; print(json.dumps([dict(r) for r in csv.DictReader(sys.stdin)]))' | > repo.json
+        cat repo.csv | python -c 'import csv, json, sys; print(json.dumps([dict(r) for r in csv.DictReader(sys.stdin)]))' | tee repo.json
         echo cat repo.json
 #        jq --slurp --raw-input --raw-output \'split("\n") | .[1:] | map(split(",")) | map({"id": .[0],
 #"repo": .[1],
