@@ -37,7 +37,8 @@ jobs:
       run: |
         repos=${{steps.repo.outputs.repoList_ALL}}
         header="repo,dat,rat,organisation;"
-        repocsv="$header${repos//,/,matrix.dat,matrix.rat,matrix.organisation;}"
+        ender=",${{matrix.dat}},${{matrix.rat}},${{matrix.organisation}};"
+        repocsv="$header${repos//,/$ender}$ender"
         echo $repocsv
 #        jq --slurp --raw-input --raw-output \'split("\n") | .[1:] | map(split(",")) | map({"id": .[0],
 #"repo": .[1],
