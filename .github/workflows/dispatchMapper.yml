@@ -40,5 +40,6 @@ jobs:
         ender=",${{matrix.dat}},${{matrix.rat}},${{matrix.organisation}};"
         repocsv="$header${repos//,/$ender}$ender"
         echo $repocsv | tee repo.csv
+        cat repo.csv
         sudo apt-get install -y miller
         mlr --icsv --ojson repo.csv
