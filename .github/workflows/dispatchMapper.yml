@@ -40,5 +40,5 @@ jobs:
         endentity="\",\"dat\":\"${{matrix.dat}}\",\"rat\":\"${{matrix.rat}}\",\"organisation\":\"${{matrix.organisation}}\"}"
         endjson="]"
         
-        repojson="$header${repos//,/$endentity,}$endentity$ender$endjson"
+        repojson="$startjson${repos//,/$endentity,}$endentity$ender$endjson"
         echo $repojson
