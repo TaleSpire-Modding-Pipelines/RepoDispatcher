@@ -41,4 +41,4 @@ jobs:
         repocsv="$header${repos//,/$ender}$ender"
         echo $repocsv | tee repo.csv
         sudo apt-get install -y miller
-        echo mlr --c2j --jlistwrap cat repo.csv
+        mlr --c2j --jlistwrap cat repo.csv
