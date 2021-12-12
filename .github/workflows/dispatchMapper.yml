@@ -41,6 +41,6 @@ jobs:
         repocsv="$header${repos//,/$ender}$ender"
         echo $repocsv | tee repo.csv
         cat repo.csv
-        sudo apt-get install -y miller
-        json= mlr --c2j --jlistwrap cat repo.csv
-        echo $json 
+        npm install
+        npm install csv-to-json-by-tataritsky --save
+        npm run csvToJson --sourceFile repo.csv --resultFile repo.json --separator "," 
