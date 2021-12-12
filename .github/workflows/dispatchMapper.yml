@@ -44,4 +44,4 @@ jobs:
 #"ultraviolet": .[3],
 #"green": .[4],
 #"red": .[5]})' \
-3  sdss1738478.csv > sdss1738478.json
+#  sdss1738478.csv > sdss1738478.json
