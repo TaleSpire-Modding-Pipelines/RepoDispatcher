@@ -36,7 +36,7 @@ jobs:
     - name: Map repo to matrix
       run: |
         foo=${{steps.repo.outputs.repoList_ALL}}
-        bar=${foo/,/,matrix.dat,matrix.rat;}
+        bar=${foo//,/,matrix.dat,matrix.rat;}
         echo $bar
 #        jq --slurp --raw-input --raw-output \'split("\n") | .[1:] | map(split(",")) | map({"id": .[0],
 #"repo": .[1],
