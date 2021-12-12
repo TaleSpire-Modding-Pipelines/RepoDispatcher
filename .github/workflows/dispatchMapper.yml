@@ -24,6 +24,8 @@ jobs:
     needs: matrix_prep
     strategy:
       matrix: ${{fromJson(needs.matrix_prep.outputs.matrix)}}
+    
+    # Move this to a Dispatch and with reference to itself
     steps:
     - name: Get Repo List
       id: repo
@@ -41,4 +43,4 @@ jobs:
         endentity="\",\"dat\":\"${{matrix.dat}}\",\"rat\":\"${{matrix.rat}}\",\"organisation\":\"${{matrix.organisation}}\"}"
         endjson="]"
         repojson="$startjson${repos//,/$endentity,$startNextJson}$endentity$endjson"
-        echo $repojson
+        
