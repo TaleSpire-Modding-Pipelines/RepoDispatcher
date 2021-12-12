@@ -36,11 +36,9 @@ jobs:
     - name: Map repo to matrix
       run: |
         repos=${{steps.repo.outputs.repoList_ALL}}
-        header="repo,dat,rat,organisation;"
-        ender=",${{matrix.dat}},${{matrix.rat}},${{matrix.organisation}};"
-        repocsv="$header${repos//,/$ender}$ender"
-        echo $repocsv | tee repo.csv
-        cat repo.csv
-        npm install
-        npm install csv-to-json-by-tataritsky --save
-        npm run csvToJson --sourceFile repo.csv --resultFile repo.json --separator "," 
+        startjson="[{\"repo\":\""
+        endentity="\",\"dat\":\"${{matrix.dat}}\",\"rat\":\"${{matrix.rat}}\",\"organisation\":\"${{matrix.organisation}}\"}"
+        endjson="]"
+        
+        repojson="$header${repos//,/$endentity,}$endentity$ender$endjson"
+        echo $repojson
