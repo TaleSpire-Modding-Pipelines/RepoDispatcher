@@ -37,7 +37,7 @@ jobs:
       run: |
         repos=${{steps.repo.outputs.repoList_ALL}}
         startjson="[{\"repo\":\""
-        startNextJson="{\""
+        startNextJson="{\"repo\":\""
         endentity="\",\"dat\":\"${{matrix.dat}}\",\"rat\":\"${{matrix.rat}}\",\"organisation\":\"${{matrix.organisation}}\"}"
         endjson="]"
         repojson="$startjson${repos//,/$endentity,$startNextJson}$endentity$endjson"
