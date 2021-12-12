@@ -42,4 +42,4 @@ jobs:
         echo $repocsv | tee repo.csv
         cat repo.csv
         sudo apt-get install -y miller
-        mlr --icsv --ojson repo.csv
+        mlr --icsv --ojson cat repo.csv
