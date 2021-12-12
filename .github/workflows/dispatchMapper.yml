@@ -35,11 +35,7 @@ jobs:
 
     - name: Echo Output
       run: |
-        echo repo: ${{steps.repo.outputs.repo}}
-        echo repoList: ${{steps.repo.outputs.repoList}}
+        foo=${{steps.repo.outputs.repoList_ALL}}
         echo repoList_ALL: ${{steps.repo.outputs.repoList_ALL}}
-        echo repoList_PRIVATE: ${{steps.repo.outputs.repoList_PRIVATE}}
-        echo repoList_FORK: ${{steps.repo.outputs.repoList_FORK}}
-        echo privateList: ${{steps.repo.outputs.privateList}}
-        echo forkList: ${{steps.repo.outputs.forkList}}
-        echo emptyList: ${{steps.repo.outputs.emptyList}}
+        bar=${foo/,/;}
+        echo repoList_CSV: $bar
